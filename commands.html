@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Commands</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+        }
+        input {
+            padding: 10px;
+            margin-top: 1px; /* Adjusted margin-top */
+            margin-bottom: 10px;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            color: black;
+            align-self: flex-end;
+            }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        #prefixMessage {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        #backToHome {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="prefixMessage">Default prefix = , | [] = optional argument, () = required argument</div>
+<body>
+    <input type="text" id="searchBar" placeholder="Search..." oninput="updateResults()"> 
+</body>
+    
+    <h2>General</h2>
+    <ul id="generalCommands">
+        <li><a href="#">!help</a> - View the list of commands</li>
+        <li><a href="#">!ping</a> - Check the bot's ping</li>
+        <!-- Add more general commands as needed -->
+    </ul>
+
+    <h2>Admin Only</h2>
+    <ul id="adminCommands">
+        <li><a href="#">!kick</a> - Kick a user</li>
+        <li><a href="#">!ban</a> - Ban a user</li>
+        <!-- Add more admin commands as needed -->
+    </ul>
+
+    <a id="backToHome" href="index.html">Back to Home</a>
+
+    <script>
+        function updateResults() {
+            var searchTerm = document.getElementById("searchBar").value.toLowerCase();
+
+            // General Commands
+            var generalCommands = document.getElementById("generalCommands");
+            var generalList = generalCommands.getElementsByTagName("li");
+
+            for (var i = 0; i < generalList.length; i++) {
+                var command = generalList[i].textContent || generalList[i].innerText;
+                if (command.toLowerCase().includes(searchTerm)) {
+                    generalList[i].style.display = "block";
+                } else {
+                    generalList[i].style.display = "none";
+                }
+            }
+
+            // Admin Commands
+            var adminCommands = document.getElementById("adminCommands");
+            var adminList = adminCommands.getElementsByTagName("li");
+
+            for (var j = 0; j < adminList.length; j++) {
+                var adminCommand = adminList[j].textContent || adminList[j].innerText;
+                if (adminCommand.toLowerCase().includes(searchTerm)) {
+                    adminList[j].style.display = "block";
+                } else {
+                    adminList[j].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
